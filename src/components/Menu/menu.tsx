@@ -37,11 +37,11 @@ const Menu: React.FC<MenuProps> = ({
     if (onSelect) onSelect(index);
   };
   const passedContext: IMenuContext = {
-    index: defaultIndex || 0,
+    index: currentActive || 0,
     onSelect: handleClick,
   };
   return (
-    <ul className={classes} style={style}>
+    <ul className={classes} style={style} data-testid="test-menu">
       <MenuContext.Provider value={passedContext}>
         {children}
       </MenuContext.Provider>
