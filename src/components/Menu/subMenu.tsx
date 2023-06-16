@@ -4,7 +4,7 @@ import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
 
 export interface SubMenuProps {
-  index?: number;
+  index?: string;
   title: string;
   className?: string;
   children?: React.ReactNode;
@@ -23,7 +23,7 @@ const SubMenu: React.FC<SubMenuProps> = ({
   });
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (context.onSelect && typeof index === 'number') {
+    if (context.onSelect && typeof index === 'string') {
       context.onSelect(index);
     }
     setMenuOpen(!menuOpen);
@@ -55,12 +55,14 @@ const SubMenu: React.FC<SubMenuProps> = ({
     const subMenuClasses = classNames('viking-submenu', {
       'menu-open': menuOpen,
     });
-    const childrenElements = React.Children.map(children, (child, index) => {
+    const childrenElements = React.Children.map(children, (child, i) => {
       const childElement =
         child as React.FunctionComponentElement<MenuItemProps>;
       const { displayName } = childElement.type;
       if (displayName === 'MenuItem') {
-        return React.cloneElement(childElement, { index });
+        return React.cloneElement(childElement, {
+          index: `${index}-${i}`,
+        });
       } else {
         console.error(
           'Warning: Menu has a child which is not a MenuItem component'

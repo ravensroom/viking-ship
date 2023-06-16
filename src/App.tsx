@@ -7,8 +7,7 @@ function App() {
   return (
     <>
       <Menu
-        mode="vertical"
-        defaultIndex={0}
+        defaultIndex={'0'}
         onSelect={(index) => {
           //alert(index);
         }}
