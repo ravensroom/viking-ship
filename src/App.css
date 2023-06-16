@@ -503,6 +503,40 @@ main {
   color: #0d6efd;
   border-bottom: 2px solid #0d6efd;
 }
+.viking-menu .submenu-item {
+  position: relative;
+}
+.viking-menu .viking-submenu {
+  display: none;
+  list-style: none;
+  padding-left: 0;
+  white-space: nowrap;
+}
+.viking-menu .viking-submenu .menu-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  color: #212529;
+}
+.viking-menu .viking-submenu .menu-item.is-active, .viking-menu .viking-submenu .menu-item:hover {
+  color: #0d6efd !important;
+}
+.viking-menu .viking-submenu.menu-open {
+  display: block;
+}
+
+.menu-horizontal > .menu-item {
+  border-bottom: 2px solid transparent;
+}
+.menu-horizontal .viking-submenu {
+  position: absolute;
+  background: #fff;
+  z-index: 100;
+  top: calc(100% + 8px);
+  left: 0;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+}
 
 .menu-vertical {
   flex-direction: column;
