@@ -12,12 +12,14 @@ export interface MenuProps {
   style?: React.CSSProperties;
   onSelect?: SelectCallback;
   children?: React.ReactNode;
+  defaultOpenSubMenus?: string[];
 }
 
 interface IMenuContext {
   index: string;
   onSelect?: SelectCallback;
   mode?: MenuMode;
+  defaultOpenSubMenus?: string[];
 }
 
 export const MenuContext = createContext<IMenuContext>({ index: '0' });
@@ -28,6 +30,7 @@ const Menu: React.FC<MenuProps> = ({
   mode,
   style,
   onSelect,
+  defaultOpenSubMenus,
   children,
 }) => {
   const [currentActive, setActive] = useState(defaultIndex);
@@ -42,7 +45,8 @@ const Menu: React.FC<MenuProps> = ({
   const passedContext: IMenuContext = {
     index: currentActive || '0',
     onSelect: handleClick,
-    mode: mode,
+    mode,
+    defaultOpenSubMenus,
   };
   const renderedChildren = () => {
     return React.Children.map(children, (child, index) => {
@@ -70,6 +74,7 @@ const Menu: React.FC<MenuProps> = ({
 Menu.defaultProps = {
   defaultIndex: '0',
   mode: 'horizontal',
+  defaultOpenSubMenus: [],
 };
 
 export default Menu;

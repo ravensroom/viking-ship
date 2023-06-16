@@ -7,10 +7,12 @@ function App() {
   return (
     <>
       <Menu
+        mode="vertical"
         defaultIndex={'0'}
         onSelect={(index) => {
           //alert(index);
         }}
+        defaultOpenSubMenus={['3']}
       >
         <MenuItem>Cool Link</MenuItem>
         <MenuItem disabled>Cool Link</MenuItem>
