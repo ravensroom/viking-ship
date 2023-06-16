@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import classNames from 'classnames';
 
 type MenuMode = 'horizontal' | 'vertical';
+type SelectCallback = (selectedNumber: number) => void;
 
 export interface MenuProps {
   defaultIndex?: number;
   className?: string;
   mode?: MenuMode;
   style?: React.CSSProperties;
-  onSelect?: (selectedNumber: number) => void;
+  onSelect?: SelectCallback;
   children?: React.ReactNode;
 }
+
+interface IMenuContext {
+  index: number;
+  onSelect?: SelectCallback;
+}
+
+export const MenuContext = createContext<IMenuContext>({ index: 0 });
 
 const Menu: React.FC<MenuProps> = ({
   defaultIndex,
@@ -20,12 +28,23 @@ const Menu: React.FC<MenuProps> = ({
   onSelect,
   children,
 }) => {
+  const [currentActive, setActive] = useState(defaultIndex);
   const classes = classNames('viking-menu', className, {
     'menu-vertical': mode === 'vertical',
   });
+  const handleClick = (index: number) => {
+    setActive(index);
+    if (onSelect) onSelect(index);
+  };
+  const passedContext: IMenuContext = {
+    index: defaultIndex || 0,
+    onSelect: handleClick,
+  };
   return (
     <ul className={classes} style={style}>
-      {children}
+      <MenuContext.Provider value={passedContext}>
+        {children}
+      </MenuContext.Provider>
     </ul>
   );
 };
