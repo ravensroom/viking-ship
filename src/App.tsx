@@ -1,37 +1,16 @@
-import Button, { ButtonSize, ButtonType } from './components/Button/button';
+import Menu from './components/Menu/menu';
+import MenuItem from './components/Menu/menuItem';
 import './App.css';
 
 function App() {
   return (
     <>
-      <Button onClick={() => alert(123)} size={ButtonSize.Large}>
-        hello
-      </Button>
-      <Button size={ButtonSize.Small} disabled>
-        hello
-      </Button>
-      <Button size={ButtonSize.Large} btnType={ButtonType.Primary}>
-        hello
-      </Button>
-      <Button size={ButtonSize.Small} btnType={ButtonType.Danger}>
-        hello
-      </Button>
-      <Button
-        disabled
-        size={ButtonSize.Large}
-        btnType={ButtonType.Link}
-        href="/"
-      >
-        hello
-      </Button>
-      <Button
-        size={ButtonSize.Small}
-        btnType={ButtonType.Link}
-        href="/"
-        target="_blank"
-      >
-        hello
-      </Button>
+      <Menu defaultIndex={0}>
+        <MenuItem>Cool Link</MenuItem>
+        <MenuItem>Cool Link</MenuItem>
+        <MenuItem>Cool Link</MenuItem>
+        <MenuItem>Cool Link</MenuItem>
+      </Menu>
     </>
   );
 }
