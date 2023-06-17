@@ -1,28 +1,18 @@
-import Menu from './components/Menu/menu';
-import MenuItem from './components/Menu/menuItem';
-import SubMenu from './components/Menu/subMenu';
+import Tabs from './components/Tabs/tabs';
+import TabItem from './components/Tabs/tabItem';
 import './App.css';
 
 function App() {
   return (
     <>
-      <Menu
-        mode="vertical"
-        defaultIndex={'0'}
-        onSelect={(index) => {
-          //alert(index);
-        }}
-        defaultOpenSubMenus={['3']}
-      >
-        <MenuItem>Cool Link</MenuItem>
-        <MenuItem disabled>Cool Link</MenuItem>
-        <MenuItem>Cool Link</MenuItem>
-        <SubMenu title="Drop Down">
-          <MenuItem>dropdown 1</MenuItem>
-          <MenuItem>dropdown 1</MenuItem>
-        </SubMenu>
-        <MenuItem>Cool Link</MenuItem>
-      </Menu>
+      <Tabs defaultIndex={0} type="card" onSelect={() => {}}>
+        <TabItem label="Tab 1">This is the my content1</TabItem>
+        <TabItem label="Tab 2" disabled>
+          This is the my content2
+        </TabItem>
+        <TabItem label="Tab 3">This is the my content3</TabItem>
+        <TabItem label="Tab 4">This is the my content4</TabItem>
+      </Tabs>
     </>
   );
 }
